@@ -1,0 +1,29 @@
+{
+  "debug": true,
+  "hosts": "",
+  "log": {
+    "log_level": "INFO",
+    "log_path": "./logs",
+    "log_file_name": "run.log",
+    "log_keep_hours": 3
+  },
+  "database": {
+    "host": "192.168.141.141",
+    "user": "root",
+    "password": "redhat",
+    "port": 3306,
+    "db": "falcon_portal",
+    "max_conn": 20,
+    "max_idle": 100
+  },
+  "rpc": {
+    "enabled": true,
+    "listen": ":6030"
+  },
+  "http": {
+    "enabled": true,
+    "listen": ":6031"
+  },
+  "max_cpu_rate": 0.2,
+  "max_mem_rate": 0.3
+}
