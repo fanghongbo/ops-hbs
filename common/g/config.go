@@ -51,7 +51,6 @@ type HttpConfig struct {
 
 type GlobalConfig struct {
 	Debug      bool            `json:"debug"`
-	Hosts      string          `json:"hosts"`
 	Log        *LogConfig      `json:"log"`
 	Database   *DatabaseConfig `json:"database"`
 	Rpc        *RpcConfig      `json:"rpc"`

@@ -1,6 +1,5 @@
 {
-  "debug": true,
-  "hosts": "",
+  "debug": false,
   "log": {
     "log_level": "INFO",
     "log_path": "./logs",
@@ -8,9 +7,9 @@
     "log_keep_hours": 3
   },
   "database": {
-    "host": "192.168.141.141",
-    "user": "root",
-    "password": "redhat",
+    "host": "127.0.0.1",
+    "user": "falcon",
+    "password": "test123456",
     "port": 3306,
     "db": "falcon_portal",
     "max_conn": 20,
