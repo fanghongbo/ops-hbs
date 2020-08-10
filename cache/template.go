@@ -98,7 +98,6 @@ func InitTemplateCache() {
 	TemplateCache.Data = cache
 }
 
-
 func Template2Strategies(strategies map[int64]model.Strategy) map[int64][]model.Strategy {
 	var result map[int64][]model.Strategy
 

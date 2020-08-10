@@ -18,12 +18,18 @@ func NewAgentsMeta() *AgentsMeta {
 }
 
 func (u *AgentsMeta) Put(req *model.AgentReportRequest) {
-	val := &model.AgentUpdateInfo{
+	var (
+		val       *model.AgentUpdateInfo
+		agentInfo *model.AgentUpdateInfo
+		exist     bool
+	)
+
+	val = &model.AgentUpdateInfo{
 		LastUpdate:    time.Now().Unix(),
 		ReportRequest: req,
 	}
 
-	if agentInfo, exists := u.Get(req.Hostname); !exists ||
+	if agentInfo, exist = u.Get(req.Hostname); !exist ||
 		agentInfo.ReportRequest.AgentVersion != req.AgentVersion ||
 		agentInfo.ReportRequest.IP != req.IP ||
 		agentInfo.ReportRequest.PluginVersion != req.PluginVersion {
@@ -51,11 +57,17 @@ func (u *AgentsMeta) Delete(hostname string) {
 }
 
 func (u *AgentsMeta) Keys() []string {
+	var (
+		count int
+		keys  []string
+		i     int
+	)
+
 	u.RLock()
 	defer u.RUnlock()
-	count := len(u.Data)
-	keys := make([]string, count)
-	i := 0
+	count = len(u.Data)
+	keys = make([]string, count)
+	i = 0
 	for hostname := range u.Data {
 		keys[i] = hostname
 		i++
@@ -64,7 +76,9 @@ func (u *AgentsMeta) Keys() []string {
 }
 
 func DeleteStaleAgents() {
-	duration := time.Hour * time.Duration(24)
+	var duration time.Duration
+
+	duration = time.Hour * time.Duration(24)
 	for {
 		time.Sleep(duration)
 		deleteStaleAgents()
@@ -72,10 +86,16 @@ func DeleteStaleAgents() {
 }
 
 func deleteStaleAgents() {
+	var (
+		before int64
+		keys   []string
+		count  int
+	)
+
 	// 一天都没有心跳的Agent，从内存中干掉
-	before := time.Now().Unix() - 3600*24
-	keys := AgentsCache.Keys()
-	count := len(keys)
+	before = time.Now().Unix() - 3600*24
+	keys = AgentsCache.Keys()
+	count = len(keys)
 	if count == 0 {
 		return
 	}

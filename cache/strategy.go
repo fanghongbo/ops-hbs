@@ -253,7 +253,6 @@ func CalcInheritStrategies(allTemplates map[int64]model.Template, templateIds []
 	ids = make(map[int64]struct{})
 
 	for _, bucket := range uniqueTemplateData {
-
 		// 开始计算一个桶，先计算老的tid，再计算新的，所以可以覆盖
 		// 该桶最终结果
 		strategiesData := make(map[string][]model.Strategy)

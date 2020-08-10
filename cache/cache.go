@@ -1,19 +1,28 @@
 package cache
 
-import "time"
+import (
+	"time"
+)
 
 func InitCache() {
-	for {
-		InitExpressionCache()
-		InitHostGroupsCache()
-		InitHostCache()
-		InitMonitorHostCache()
-		InitGroupPluginsCache()
-		InitTemplateCache()
-		InitGroupTemplatesCache()
-		InitHostTemplateIdsMeta()
-		InitStrategiesCache()
+	var t1 *time.Timer
+	t1 = time.NewTimer(time.Second * 10)
 
-		time.Sleep(time.Minute)
+	for {
+		select {
+		case <-t1.C:
+			InitExpressionCache()
+			InitHostGroupsCache()
+			InitHostCache()
+			InitMonitorHostCache()
+			InitGroupPluginsCache()
+			InitTemplateCache()
+			InitHostTemplateIdsMeta()
+			InitGroupTemplatesCache()
+			InitStrategiesCache()
+
+			// reset timer
+			t1.Reset(time.Minute * 1)
+		}
 	}
 }
