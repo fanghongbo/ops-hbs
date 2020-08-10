@@ -15,9 +15,10 @@ import (
 func main() {
 	g.InitAll()
 
-	go cache.InitCache()
 	go rpc.Start()
 	go http.Start()
+	go cache.InitCache()
+
 
 	// 等待中断信号以优雅地关闭 Hbs（设置 5 秒的超时时间）
 	quit := make(chan os.Signal)

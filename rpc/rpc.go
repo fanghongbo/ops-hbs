@@ -32,7 +32,7 @@ func Start() {
 
 	listener, err = net.Listen("tcp", addr)
 	if err != nil {
-		dlog.Errorf("listen error: %s", err)
+		dlog.Fatal(err)
 	} else {
 		dlog.Infof("listening %s", addr)
 	}
