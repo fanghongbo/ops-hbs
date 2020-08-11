@@ -20,6 +20,11 @@ func Start() {
 		err      error
 	)
 
+	if !g.Conf().Rpc.Enabled {
+		dlog.Warning("rpc is disable")
+		return
+	}
+
 	addr = g.Conf().Rpc.Listen
 	server = rpc.NewServer()
 
