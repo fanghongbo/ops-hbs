@@ -1,6 +1,9 @@
 package g
 
-import "context"
+import (
+	"context"
+	"github.com/fanghongbo/dlog"
+)
 
 func InitAll() {
 	InitConfig()
@@ -16,6 +19,9 @@ func Shutdown(ctx context.Context) error {
 	if db != nil {
 		_ = db.Close()
 	}
+
+	// 刷新日志
+	dlog.Close()
 
 	return nil
 }
