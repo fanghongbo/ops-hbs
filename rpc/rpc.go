@@ -26,11 +26,11 @@ func Start() {
 	server = rpc.NewServer()
 
 	if err = server.Register(new(Agent)); err != nil {
-		dlog.Errorf("register rpc err: %s", err)
+		dlog.Fatalf("register rpc err: %s", err)
 	}
 	
 	if err = server.Register(new(Hbs)); err != nil {
-		dlog.Errorf("register hbs err: %s", err)
+		dlog.Fatalf("register hbs err: %s", err)
 	}
 
 	listener, err = net.Listen("tcp", addr)
