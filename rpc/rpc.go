@@ -28,6 +28,7 @@ func Start() {
 	if err = server.Register(new(Agent)); err != nil {
 		dlog.Errorf("register rpc err: %s", err)
 	}
+	
 	if err = server.Register(new(Hbs)); err != nil {
 		dlog.Errorf("register hbs err: %s", err)
 	}
