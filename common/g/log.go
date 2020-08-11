@@ -11,6 +11,10 @@ func InitLog() {
 		err     error
 	)
 
+	if config.Log == nil {
+		return
+	}
+
 	backend, err = dlog.NewFileBackend(Conf().Log.LogPath, Conf().Log.LogFileName)
 	if err != nil {
 		dlog.Fatalf("create log file backend err: %s", err)

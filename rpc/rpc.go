@@ -17,7 +17,7 @@ func Start() {
 		err      error
 	)
 
-	if !g.Conf().Rpc.Enabled {
+	if g.Conf().Rpc == nil || !g.Conf().Rpc.Enabled {
 		dlog.Warning("rpc is disable")
 		return
 	}
@@ -28,7 +28,7 @@ func Start() {
 	if err = server.Register(new(Agent)); err != nil {
 		dlog.Fatalf("register rpc err: %s", err)
 	}
-	
+
 	if err = server.Register(new(Hbs)); err != nil {
 		dlog.Fatalf("register hbs err: %s", err)
 	}

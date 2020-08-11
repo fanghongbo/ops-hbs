@@ -165,26 +165,32 @@ func ReloadConfig() error {
 
 func Validator() error {
 	// 设置默认日志路径为 ./logs
-	if config.Log.LogPath == "" {
-		config.Log.LogPath = "./logs"
-	}
+	if config.Log != nil {
+		if config.Log.LogPath == "" {
+			config.Log.LogPath = "./logs"
+		}
 
-	// 设置默认日志文件名称为 run.log
-	if config.Log.LogFileName == "" {
-		config.Log.LogFileName = "run.log"
-	}
+		// 设置默认日志文件名称为 run.log
+		if config.Log.LogFileName == "" {
+			config.Log.LogFileName = "run.log"
+		}
 
-	// 设置默认日志级别为 LogLevel
-	if config.Log.LogLevel == "" {
-		config.Log.LogLevel = "INFO"
-	}
+		// 设置默认日志级别为 LogLevel
+		if config.Log.LogLevel == "" {
+			config.Log.LogLevel = "INFO"
+		}
 
-	// 设置默认保留24小时的日志
-	if config.Log.LogKeepHours == 0 {
-		config.Log.LogKeepHours = 24
+		// 设置默认保留24小时的日志
+		if config.Log.LogKeepHours == 0 {
+			config.Log.LogKeepHours = 24
+		}
 	}
 
 	// 数据库host设置
+	if config.Database == nil {
+		return errors.New("miss database configuration")
+	}
+
 	if config.Database.Host == "" {
 		config.Database.Host = "127.0.0.1"
 	}
@@ -220,14 +226,14 @@ func Validator() error {
 	}
 
 	// rpc 设置
-	if config.Rpc.Enabled {
+	if config.Rpc != nil && config.Rpc.Enabled {
 		if config.Rpc.Listen == "" {
 			return errors.New("rpc listen addr is empty")
 		}
 	}
 
 	// http 设置
-	if config.Http.Enabled {
+	if config.Http != nil && config.Http.Enabled {
 		if config.Http.Listen == "" {
 			return errors.New("http listen addr is empty")
 		}
