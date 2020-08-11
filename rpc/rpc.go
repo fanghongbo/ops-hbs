@@ -9,9 +9,6 @@ import (
 	"time"
 )
 
-type Hbs int
-type Agent int
-
 func Start() {
 	var (
 		addr     string

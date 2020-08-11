@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+type Agent int
+
 func (t *Agent) MinePlugins(args model.AgentHeartbeatRequest, reply *model.AgentPluginsResponse) error {
 	if args.Hostname == "" {
 		return nil

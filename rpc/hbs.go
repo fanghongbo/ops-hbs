@@ -5,6 +5,8 @@ import (
 	"github.com/fanghongbo/ops-hbs/common/model"
 )
 
+type Hbs int
+
 func (t *Hbs) GetExpressions(req model.NullRpcRequest, reply *model.ExpressionResponse) error {
 	reply.Expressions = cache.ExpressionCache.Get()
 	return nil
