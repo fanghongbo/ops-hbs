@@ -3,8 +3,8 @@ package g
 import (
 	"fmt"
 	"github.com/fanghongbo/dlog"
-	"github.com/fanghongbo/gorm"
-	_ "github.com/fanghongbo/gorm/dialects/mysql"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var db *gorm.DB

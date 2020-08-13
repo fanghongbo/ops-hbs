@@ -2,8 +2,8 @@ package model
 
 import (
 	"fmt"
-	"github.com/fanghongbo/gorm"
 	"github.com/fanghongbo/ops-hbs/common/g"
+	"github.com/jinzhu/gorm"
 	"strings"
 )
 

@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/fanghongbo/gorm"
 	"github.com/fanghongbo/ops-hbs/common/g"
+	"github.com/jinzhu/gorm"
 )
 
 type HostGroup struct {
